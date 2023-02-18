@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/main.css">    
+    <title>Chat</title>
+</head>
+<body>
+    <div id="app">
+        <h1 id="main-headline">Chat App</h1>
+        <div v-if="!loggedIn">
+            <h2 class="login">Login</h2>
+            <form>
+                <div>
+                    <label for="username">Username:</label>
+                    <input class="info-space" v-model="username" type="text" id="username">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input class="info-space" v-model="password" type="password" id="password">
+                </div>
+                <div v-if="error" class="error">{{ error }}</div>
+                <button @click.prevent="login">Login</button>
+            </form>
+        </div>
+        <div v-else>
+            <h2>Welcome, {{ username }}!</h2>
+
+
+    <main id="app"> <section class="messages">
+            <h2>Receive messages here:</h2>
+            <ul id="messages">
+                <!-- render a new message component for every message -->
+                <newmsg v-for="message in messages" :message="message"></newmsg>
+            </ul>
+        </section>
+        <section>
+            <h2>Input messages here:</h2>
+            <input id="nickname" v-model="nickname" type="text" placeholder="Nickname?">
+            
+            <form>
+                <label for="message">Message</label>
+                <textarea @focus="catchTextFocus" v-model="message" id="textarea" class="message" autocomplete="off"></textarea>
+                <input @click.prevent="dispatchMessage" type="submit" value="Send">
+            </form>
+        </section>
+
+       
+    </main>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js" type="module" defer></script>
+</body>
+</html>
